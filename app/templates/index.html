@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Similarity - NLI Prediction</title>
+    <style>
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2fd; /* Light blue background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1976D2; /* Darker blue for heading */
+            margin-bottom: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1976D2; /* Darker blue for labels */
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #90caf9; /* Light blue border */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: #1976D2; /* Darker blue on focus */
+            outline: none;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 10px;
+            background-color: #2196F3; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #1976D2; /* Darker blue on hover */
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-left: 5px solid #1976D2; /* Darker blue accent */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: #333;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1976D2; /* Darker blue footer */
+            color: white;
+            font-size: 14px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <div>
+            <h1>Text Similarity - NLI Prediction</h1>
+            <p class="text-center" style="color: #1976D2;">
+                Enter two sentences to compute their semantic similarity and NLI classification.
+            </p>
+            <!-- User Input Form -->
+            <form method="post" action="/">
+                <div class="form-group">
+                    <label for="sentence1">Premise:</label>
+                    <input type="text" id="sentence1" name="sentence1" class="form-control" placeholder="Enter the first sentence..." value="{{ sentence1 or '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="sentence2">Hypothesis:</label>
+                    <input type="text" id="sentence2" name="sentence2" class="form-control" placeholder="Enter the second sentence..." value="{{ sentence2 or '' }}" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-custom">Analyze Similarity</button>
+                </div>
+            </form>
+
+            <!-- Results -->
+            {% if similarity %}
+            <div class="result-box">
+                <p>NLI Classification: <strong>{{ nli_prediction }}</strong></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            <p class="mb-0">@ William - st125326</p>
+        </div>
+    </footer>
+</body>
+</html>
